@@ -205,6 +205,28 @@
     });
   }
 
+  /* ---- Product category filter (products page) ---- */
+  var filterBar = doc.getElementById('filterBar');
+  if (filterBar) {
+    var fBtns = filterBar.querySelectorAll('.filter-btn');
+    var cards = doc.querySelectorAll('#productGrid .product-card');
+    var noResult = doc.getElementById('noResult');
+    filterBar.addEventListener('click', function (e) {
+      var btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      fBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var cat = btn.getAttribute('data-cat');
+      var shown = 0;
+      cards.forEach(function (c) {
+        var match = cat === 'all' || c.getAttribute('data-cat') === cat;
+        c.style.display = match ? '' : 'none';
+        if (match) { shown++; c.classList.add('in'); }
+      });
+      if (noResult) noResult.hidden = shown !== 0;
+    });
+  }
+
   /* ---- Footer year ---- */
   var yr = doc.getElementById('year');
   if (yr) yr.textContent = new Date().getFullYear();
