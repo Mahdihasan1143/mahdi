@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ifada Solar — Bangladesh's leading manufacturer of solar street lights, panels, water pumps, inverters and complete solar solutions since 2006." />
+  <meta name="theme-color" content="#0B3D91" />
+  <title>Ifada Solar — Powering Bangladesh with the Sun</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='28' fill='%23FFC107'/%3E%3C/svg%3E" />
+</head>
+<body>
+
+  <!-- ===== Scroll progress ===== -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- ===== Navbar ===== -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="#hero" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="34" height="34"><circle cx="24" cy="24" r="10" fill="#FFC107"/><g stroke="#FFC107" stroke-width="2.6" stroke-linecap="round"><line x1="24" y1="3" x2="24" y2="11"/><line x1="24" y1="37" x2="24" y2="45"/><line x1="3" y1="24" x2="11" y2="24"/><line x1="37" y1="24" x2="45" y2="24"/><line x1="9" y1="9" x2="14" y2="14"/><line x1="34" y1="34" x2="39" y2="39"/><line x1="9" y1="39" x2="14" y2="34"/><line x1="34" y1="14" x2="39" y2="9"/></g></svg>
+        </span>
+        <span class="brand-text">Ifada<strong>Solar</strong></span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="products.html">Products</a>
+        <a href="#solutions">Solutions</a>
+        <a href="#projects">Projects</a>
+        <a href="about.html">About</a>
+        <a href="#calculator">Savings</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a href="#contact" class="btn btn-primary nav-cta">Get Free Quote</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- ===== 1. HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="sky" id="sky">
+      <div class="stars" id="stars"></div>
+      <div class="sun" id="sun"></div>
+      <div class="moon" id="moon"></div>
+      <div class="cloud cloud-1"></div>
+      <div class="cloud cloud-2"></div>
+      <div class="cloud cloud-3"></div>
+      <div class="bird bird-1">&#x2015;v&#x2015;</div>
+      <div class="bird bird-2">&#x2015;v&#x2015;</div>
+    </div>
+
+    <div class="scene">
+      <div class="hills"></div>
+
+      <!-- Modern house with solar roof -->
+      <div class="house" id="house">
+        <div class="roof">
+          <div class="solar-roof">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <div class="wing"></div>
+        <div class="facade">
+          <div class="win w1"></div><div class="win w2"></div>
+          <div class="win w3"></div><div class="door"></div>
+        </div>
+        <div class="garage"></div>
+      </div>
+
+      <!-- Solar street light -->
+      <div class="streetlight" id="streetlight">
+        <div class="pole"></div>
+        <div class="panel"></div>
+        <div class="lamp-arm"></div>
+        <div class="lamp"><span class="glow"></span></div>
+        <div class="light-cone"></div>
+      </div>
+
+      <div class="grass"></div>
+      <!-- Solar panel array -->
+      <div class="panel-array" aria-hidden="true">
+        <div class="pv"></div><div class="pv"></div><div class="pv"></div>
+      </div>
+    </div>
+
+    <!-- Floating value card -->
+    <div class="value-card" id="valueCard" aria-hidden="true">
+      <strong>৳0 Electricity Bills</strong>
+      <span>for the next 7+ years</span>
+    </div>
+
+    <div class="container hero-content">
+      <p class="eyebrow reveal">☀️ Trusted since 2006 · Made in Bangladesh</p>
+      <h1 class="reveal">Powering Bangladesh<br><span class="grad">with the Sun.</span></h1>
+      <p class="hero-sub reveal">From solar street lights to complete home &amp; industrial systems — Ifada Solar delivers certified, high-efficiency solar energy solutions nationwide.</p>
+
+      <!-- Morning / Night toggle -->
+      <div class="daynight-toggle reveal" role="group" aria-label="Preview day or night">
+        <button type="button" class="dn-btn active" data-mode="morning">☀️ Morning<small>Powered by sun</small></button>
+        <button type="button" class="dn-btn" data-mode="night">🌙 Night<small>Powered by battery</small></button>
+        <span class="dn-slider" id="dnSlider"></span>
+      </div>
+
+      <div class="hero-actions reveal">
+        <a href="#contact" class="btn btn-primary btn-lg">Get Free Consultation</a>
+        <a href="#products" class="btn btn-ghost btn-lg">View Products →</a>
+      </div>
+      <div class="hero-badges reveal">
+        <span>✔ 25-Year Panel Warranty</span>
+        <span>✔ Nationwide Installation</span>
+        <span>✔ Certified Products</span>
+      </div>
+    </div>
+    <a href="#trusted" class="scroll-hint" aria-label="Scroll down"><span></span></a>
+  </section>
+
+  <!-- ===== 2. TRUSTED BY / STATS ===== -->
+  <section class="stats" id="trusted">
+    <div class="container">
+      <div class="stat-grid">
+        <div class="stat"><div class="stat-num" data-count="20" data-suffix="+">0</div><p>Years Experience</p></div>
+        <div class="stat"><div class="stat-num" data-count="12000" data-suffix="+">0</div><p>Projects Completed</p></div>
+        <div class="stat"><div class="stat-num" data-count="9500" data-suffix="+">0</div><p>Happy Customers</p></div>
+        <div class="stat"><div class="stat-num" data-count="45" data-suffix=" MW">0</div><p>Installed Capacity</p></div>
+        <div class="stat"><div class="stat-num" data-count="24" data-suffix="">0</div><p>Branches Nationwide</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3. PRODUCT CATEGORIES ===== -->
+  <section class="section" id="products">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">Our Range</span>
+        <h2>Product Categories</h2>
+        <p>Everything you need to go solar — engineered, tested and backed by warranty.</p>
+      </div>
+      <div class="cat-grid">
+        <article class="cat-card reveal"><div class="cat-ico">🔆</div><h3>Solar Panels</h3><p>Mono &amp; poly PV modules, 150W–550W.</p></article>
+        <article class="cat-card reveal"><div class="cat-ico">🏠</div><h3>Solar Home System</h3><p>Complete off-grid kits for every home.</p></article>
+        <article class="cat-card reveal"><div class="cat-ico">💧</div><h3>Solar Water Pump</h3><p>DC &amp; AC pumps for irrigation.</p></article>
+        <article class="cat-card reveal"><div class="cat-ico">💡</div><h3>Solar Street Light</h3><p>All-in-one LiFePO4 street lights.</p></article>
+        <article class="cat-card reveal"><div class="cat-ico">🔋</div><h3>Solar Battery</h3><p>Lithium &amp; tubular deep-cycle storage.</p></article>
+        <article class="cat-card reveal"><div class="cat-ico">⚡</div><h3>Solar Inverter</h3><p>Hybrid, on-grid &amp; off-grid inverters.</p></article>
+        <article class="cat-card reveal"><div class="cat-ico">🔧</div><h3>Solar Accessories</h3><p>Controllers, cables, mounts &amp; more.</p></article>
+        <article class="cat-card reveal"><div class="cat-ico">🏭</div><h3>Industrial Solutions</h3><p>Custom MW-scale power plants.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4. FEATURED PRODUCTS ===== -->
+  <section class="section section-alt" id="featured">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">Best Sellers</span>
+        <h2>Featured Products</h2>
+        <p>Our most trusted models, chosen by thousands of customers.</p>
+      </div>
+      <div class="feat-grid">
+        <article class="feat-card reveal">
+          <div class="feat-img sl"><div class="feat-badge">Best Seller</div><span class="prod-emoji">🛣️</span></div>
+          <div class="feat-body">
+            <h3>All-in-One Solar Street Light</h3>
+            <ul><li>LiFePO4 battery + MPPT controller</li><li>Mono panel, 30W–200W options</li><li>Motion sensor &amp; dusk-to-dawn</li></ul>
+            <div class="feat-actions"><a href="#contact" class="btn btn-primary btn-sm">View Details</a><a href="#contact" class="btn btn-link">Download Brochure ↓</a></div>
+          </div>
+        </article>
+        <article class="feat-card reveal">
+          <div class="feat-img wp"><span class="prod-emoji">🚜</span></div>
+          <div class="feat-body">
+            <h3>Solar Water Pump</h3>
+            <ul><li>DC surface &amp; submersible</li><li>0.5HP – 10HP capacity</li><li>Ideal for irrigation &amp; farms</li></ul>
+            <div class="feat-actions"><a href="#contact" class="btn btn-primary btn-sm">View Details</a><a href="#contact" class="btn btn-link">Download Brochure ↓</a></div>
+          </div>
+        </article>
+        <article class="feat-card reveal">
+          <div class="feat-img mono"><span class="prod-emoji">🔆</span></div>
+          <div class="feat-body">
+            <h3>Mono Solar Panel 250W</h3>
+            <ul><li>High-efficiency monocrystalline</li><li>25-year performance warranty</li><li>Anti-reflective tempered glass</li></ul>
+            <div class="feat-actions"><a href="#contact" class="btn btn-primary btn-sm">View Details</a><a href="#contact" class="btn btn-link">Download Brochure ↓</a></div>
+          </div>
+        </article>
+        <article class="feat-card reveal">
+          <div class="feat-img inv"><span class="prod-emoji">⚡</span></div>
+          <div class="feat-body">
+            <h3>Hybrid Solar Inverter</h3>
+            <ul><li>Grid + battery + solar in one</li><li>1kVA – 10kVA range</li><li>Smart Wi-Fi monitoring</li></ul>
+            <div class="feat-actions"><a href="#contact" class="btn btn-primary btn-sm">View Details</a><a href="#contact" class="btn btn-link">Download Brochure ↓</a></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5. WHY CHOOSE ===== -->
+  <section class="section" id="why">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">The Ifada Advantage</span>
+        <h2>Why Choose Ifada Solar</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-item reveal"><span class="why-ico">📈</span><h4>High Efficiency</h4><p>Premium mono cells for maximum output per panel.</p></div>
+        <div class="why-item reveal"><span class="why-ico">🛡️</span><h4>25-Year Warranty</h4><p>Long-life panels with industry-leading guarantees.</p></div>
+        <div class="why-item reveal"><span class="why-ico">👷</span><h4>Professional Installation</h4><p>Certified engineers across the country.</p></div>
+        <div class="why-item reveal"><span class="why-ico">📞</span><h4>Fast Support</h4><p>Dedicated after-sales &amp; service hotline.</p></div>
+        <div class="why-item reveal"><span class="why-ico">✅</span><h4>Certified Products</h4><p>ISO, BSTI &amp; authorized-dealer certified.</p></div>
+        <div class="why-item reveal"><span class="why-ico">🌍</span><h4>Nationwide Service</h4><p>24 branches serving all 64 districts.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6. ABOUT ===== -->
+  <section class="section section-alt" id="about">
+    <div class="container about-grid">
+      <div class="about-text reveal">
+        <span class="kicker">Our Story</span>
+        <h2>About Ifada Solar</h2>
+        <p>Since <strong>2006</strong>, Ifada Electronics Ltd. has grown into one of Bangladesh's most trusted manufacturers and suppliers of solar energy solutions. From our beginnings in solar street lighting, we now deliver complete solar systems for homes, businesses, farms and government projects.</p>
+        <p>Every product is built with premium components — LiFePO4 batteries, MPPT controllers and high-efficiency mono panels — and backed by professional installation and lifelong support. Our mission is simple: <strong>clean, reliable, affordable power for every corner of Bangladesh.</strong></p>
+        <div class="about-mini">
+          <div><strong>2006</strong><span>Established</span></div>
+          <div><strong>ISO &amp; BSTI</strong><span>Certified</span></div>
+          <div><strong>64</strong><span>Districts Served</span></div>
+        </div>
+        <a href="#contact" class="btn btn-primary">Talk to Our Experts</a>
+      </div>
+      <div class="about-visual reveal">
+        <div class="about-tile factory"><span>🏭</span><p>Manufacturing Factory</p></div>
+        <div class="about-tile team"><span>👷‍♂️</span><p>Expert Team</p></div>
+        <div class="about-tile install"><span>🔧</span><p>Field Installation</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 7. SOLUTIONS ===== -->
+  <section class="section" id="solutions">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">Tailored For You</span>
+        <h2>Our Solutions</h2>
+        <p>Solar systems designed for every scale of need.</p>
+      </div>
+      <div class="sol-grid">
+        <article class="sol-card reveal res"><span class="sol-ico">🏡</span><h3>Residential</h3><p>Rooftop &amp; home backup systems that cut your monthly bill.</p></article>
+        <article class="sol-card reveal com"><span class="sol-ico">🏢</span><h3>Commercial</h3><p>Reliable power for shops, offices &amp; commercial buildings.</p></article>
+        <article class="sol-card reveal ind"><span class="sol-ico">🏭</span><h3>Industrial</h3><p>High-capacity plants that slash operating costs.</p></article>
+        <article class="sol-card reveal agr"><span class="sol-ico">🌾</span><h3>Agriculture</h3><p>Solar irrigation pumps for productive, self-reliant farms.</p></article>
+        <article class="sol-card reveal gov"><span class="sol-ico">🏛️</span><h3>Government Projects</h3><p>Street lighting &amp; rural electrification at scale.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 8. PROJECTS ===== -->
+  <section class="section section-alt" id="projects">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">Portfolio</span>
+        <h2>Recent Projects</h2>
+        <p>A snapshot of installations delivered across Bangladesh.</p>
+      </div>
+      <div class="proj-grid">
+        <figure class="proj reveal g1"><figcaption><span>Solar Street Lighting</span><small>Mirpur, Dhaka</small></figcaption></figure>
+        <figure class="proj reveal g2"><figcaption><span>Rooftop Home System</span><small>Chattogram</small></figcaption></figure>
+        <figure class="proj reveal g3"><figcaption><span>Irrigation Pump</span><small>Rangpur</small></figcaption></figure>
+        <figure class="proj reveal g4"><figcaption><span>Industrial Plant</span><small>Gazipur</small></figcaption></figure>
+        <figure class="proj reveal g5"><figcaption><span>Rural Electrification</span><small>Sylhet</small></figcaption></figure>
+        <figure class="proj reveal g6"><figcaption><span>Commercial Rooftop</span><small>Khulna</small></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 9. REVIEWS ===== -->
+  <section class="section reviews" id="reviews">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">Testimonials</span>
+        <h2>What Customers Say</h2>
+      </div>
+      <div class="review-slider reveal">
+        <div class="review-track" id="reviewTrack">
+          <blockquote class="review"><p>"Ifada installed our street lights across the whole area. Bright, reliable and zero electricity bill. Highly recommended."</p><footer>— Abdul Karim, <span>Union Parishad, Rangpur</span></footer><div class="stars-row">★★★★★</div></blockquote>
+          <blockquote class="review"><p>"Our home solar system has been running flawlessly for 3 years. Support team is always one call away."</p><footer>— Nasrin Akter, <span>Homeowner, Dhaka</span></footer><div class="stars-row">★★★★★</div></blockquote>
+          <blockquote class="review"><p>"The solar water pump transformed our farm. Free irrigation from the sun — best investment we made."</p><footer>— Jahangir Alam, <span>Farmer, Bogura</span></footer><div class="stars-row">★★★★★</div></blockquote>
+          <blockquote class="review"><p>"Professional installation and genuine products. The hybrid inverter keeps our office running during load-shedding."</p><footer>— Tanvir Hossain, <span>Business Owner, Chattogram</span></footer><div class="stars-row">★★★★★</div></blockquote>
+        </div>
+        <div class="review-dots" id="reviewDots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 10. PROCESS ===== -->
+  <section class="section" id="process">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">How It Works</span>
+        <h2>Installation Process</h2>
+        <p>From first call to lifelong support — a simple 6-step journey.</p>
+      </div>
+      <ol class="process">
+        <li class="reveal"><span class="p-num">1</span><h4>Free Survey</h4><p>We visit and assess your site at no cost.</p></li>
+        <li class="reveal"><span class="p-num">2</span><h4>System Design</h4><p>Custom sizing for your energy needs.</p></li>
+        <li class="reveal"><span class="p-num">3</span><h4>Quotation</h4><p>Transparent, no-hidden-cost pricing.</p></li>
+        <li class="reveal"><span class="p-num">4</span><h4>Installation</h4><p>Certified engineers install everything.</p></li>
+        <li class="reveal"><span class="p-num">5</span><h4>Testing</h4><p>Full commissioning &amp; performance check.</p></li>
+        <li class="reveal"><span class="p-num">6</span><h4>After-Sales</h4><p>Ongoing service &amp; warranty support.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== 11. CERTIFICATES ===== -->
+  <section class="section section-alt certs" id="certs">
+    <div class="container">
+      <div class="section-head reveal"><span class="kicker">Trust &amp; Quality</span><h2>Certifications</h2></div>
+      <div class="cert-row">
+        <div class="cert reveal"><span>🏅</span><strong>ISO Certified</strong></div>
+        <div class="cert reveal"><span>🔖</span><strong>BSTI Approved</strong></div>
+        <div class="cert reveal"><span>📜</span><strong>Warranty Backed</strong></div>
+        <div class="cert reveal"><span>🤝</span><strong>Authorized Dealer</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 12 + 13. FAQ + CALCULATOR ===== -->
+  <section class="section" id="calculator">
+    <div class="container calc-wrap">
+      <div class="calc reveal">
+        <span class="kicker">Solar Savings Calculator</span>
+        <h2>Estimate Your Savings</h2>
+        <p class="calc-lead">Enter your monthly electricity bill to see what solar could do for you.</p>
+        <label for="bill">Monthly Electricity Bill (৳)</label>
+        <input type="range" id="bill" min="500" max="50000" step="500" value="6000" />
+        <div class="bill-val">৳ <span id="billOut">6,000</span> / month</div>
+        <div class="calc-results">
+          <div class="cr"><span id="rSavings">৳0</span><small>Est. Monthly Savings</small></div>
+          <div class="cr"><span id="rSize">0 kW</span><small>Required Solar Size</small></div>
+          <div class="cr"><span id="rRoi">0 yrs</span><small>Payback Period (ROI)</small></div>
+        </div>
+        <a href="#contact" class="btn btn-primary">Get an Exact Quote</a>
+        <p class="calc-note">*Estimates only. Actual figures depend on site survey &amp; usage.</p>
+      </div>
+
+      <div class="faq reveal">
+        <span class="kicker">Questions?</span>
+        <h2>Frequently Asked</h2>
+        <div class="faq-list" id="faqList">
+          <div class="faq-item"><button class="faq-q">How much can I save with solar? <span>+</span></button><div class="faq-a"><p>Most homes cut 50–90% of their electricity bill. With net metering you can even sell surplus power back to the grid.</p></div></div>
+          <div class="faq-item"><button class="faq-q">What warranty do you provide? <span>+</span></button><div class="faq-a"><p>Panels carry up to a 25-year performance warranty; street lights come with a 2–3 year warranty, extendable on request.</p></div></div>
+          <div class="faq-item"><button class="faq-q">Do you install outside Dhaka? <span>+</span></button><div class="faq-a"><p>Yes. With 24 branches we install and service across all 64 districts of Bangladesh.</p></div></div>
+          <div class="faq-item"><button class="faq-q">How long does installation take? <span>+</span></button><div class="faq-a"><p>A typical home system takes 1–2 days after design approval. Larger commercial projects vary by scale.</p></div></div>
+          <div class="faq-item"><button class="faq-q">Is a free site survey really free? <span>+</span></button><div class="faq-a"><p>Absolutely. Our survey and quotation are completely free with no obligation.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 14. BLOG ===== -->
+  <section class="section section-alt" id="blog">
+    <div class="container">
+      <div class="section-head reveal"><span class="kicker">Learn</span><h2>Latest News &amp; Blog</h2></div>
+      <div class="blog-grid">
+        <article class="blog-card reveal"><div class="blog-tag">Solar Tips</div><h3>5 Ways to Maximize Your Solar Output</h3><p>Simple maintenance habits that keep your panels performing at their peak all year.</p><a href="#" class="btn btn-link">Read more →</a></article>
+        <article class="blog-card reveal"><div class="blog-tag">Policy</div><h3>Net Metering in Bangladesh Explained</h3><p>How the government policy lets you sell surplus solar power back to the grid.</p><a href="#" class="btn btn-link">Read more →</a></article>
+        <article class="blog-card reveal"><div class="blog-tag">New Product</div><h3>Introducing Our 550W Mono Panel</h3><p>Higher efficiency, fewer panels, more savings — meet our newest module.</p><a href="#" class="btn btn-link">Read more →</a></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 15. CONTACT ===== -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="section-head reveal"><span class="kicker">Get In Touch</span><h2>Contact Us</h2><p>Free consultation · Free survey · Fast response.</p></div>
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <div class="ci"><span>📍</span><div><strong>Head Office</strong><p>House #89, Road #01, Block B, Kalshy Main Road, Pallabi, Mirpur-12, Dhaka-1216</p></div></div>
+          <div class="ci"><span>📞</span><div><strong>Call Us</strong><p><a href="tel:+8801963920520">01963 920520</a> · <a href="tel:+8801958148100">01958 148100</a> · <a href="tel:+8801958148101">01958 148101</a></p></div></div>
+          <div class="ci"><span>✉️</span><div><strong>Email</strong><p><a href="mailto:ifadaelectronicsltd@gmail.com">ifadaelectronicsltd@gmail.com</a></p></div></div>
+          <div class="ci"><span>💬</span><div><strong>WhatsApp</strong><p><a href="https://wa.me/8801963920520" target="_blank" rel="noopener">Chat with us →</a></p></div></div>
+          <div class="map"><iframe title="Ifada Solar location" src="https://www.google.com/maps?q=Mirpur-12,Pallabi,Dhaka&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+        </div>
+        <form class="contact-form reveal" id="contactForm" novalidate>
+          <div class="fld"><label for="name">Full Name</label><input id="name" name="name" type="text" required placeholder="Your name" /></div>
+          <div class="fld"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" required placeholder="01XXXXXXXXX" /></div>
+          <div class="fld"><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@email.com" /></div>
+          <div class="fld"><label for="interest">I'm interested in</label>
+            <select id="interest" name="interest">
+              <option>Solar Home System</option><option>Solar Street Light</option><option>Solar Water Pump</option><option>Solar Panels</option><option>Inverter / Battery</option><option>Industrial / Commercial</option><option>Other</option>
+            </select>
+          </div>
+          <div class="fld"><label for="msg">Message</label><textarea id="msg" name="msg" rows="4" placeholder="Tell us about your requirement..."></textarea></div>
+          <button type="submit" class="btn btn-primary btn-lg">Send Request</button>
+          <p class="form-status" id="formStatus" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 16. FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="f-brand">
+        <span class="brand-text">Ifada<strong>Solar</strong></span>
+        <p>Powering Bangladesh with clean, reliable solar energy since 2006.</p>
+        <div class="socials">
+          <a href="https://www.facebook.com/ifadaElectronics/" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+          <a href="https://www.youtube.com/c/ifadaelectronics" target="_blank" rel="noopener" aria-label="YouTube">▶</a>
+          <a href="https://wa.me/8801963920520" target="_blank" rel="noopener" aria-label="WhatsApp">✆</a>
+        </div>
+      </div>
+      <div class="f-col"><h5>Products</h5><a href="products.html">Solar Panels</a><a href="products.html">Street Lights</a><a href="products.html">Water Pumps</a><a href="products.html">Inverters</a><a href="products.html">Batteries</a></div>
+      <div class="f-col"><h5>Solutions</h5><a href="#solutions">Residential</a><a href="#solutions">Commercial</a><a href="#solutions">Industrial</a><a href="#solutions">Agriculture</a><a href="#solutions">Government</a></div>
+      <div class="f-col"><h5>Company</h5><a href="#about">About</a><a href="#projects">Projects</a><a href="#blog">Blog</a><a href="#certs">Certifications</a><a href="#contact">Contact</a></div>
+      <div class="f-col"><h5>Support</h5><a href="#calculator">Savings Calculator</a><a href="#calculator">FAQ</a><a href="#contact">Free Survey</a><a href="tel:+8801963920520">Hotline</a></div>
+    </div>
+    <div class="footer-bottom container">
+      <p>© <span id="year"></span> Ifada Electronics Ltd. All rights reserved.</p>
+      <p>Made with ☀️ in Bangladesh</p>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/8801963920520" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 32 32" width="30" height="30" fill="#fff"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.1 1.6 5.9L4 29l8.3-1.6C14 28.4 15 28.6 16 28.6c6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.6c-1 0-2-.2-2.9-.6l-.6-.3-4.9 1 1-4.8-.3-.6c-.9-1.4-1.3-3-1.3-4.7 0-5 4.1-9.1 9.1-9.1s9 4.1 9 9.1-4.1 9-9.1 9zm5-6.8c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-1.6-.8-2.6-1.4-3.7-3.2-.3-.5.3-.5.8-1.5.1-.2 0-.3 0-.5s-.6-1.5-.9-2c-.2-.5-.4-.4-.6-.5h-.5c-.2 0-.5.1-.7.3-.7.7-1 1.6-1 2.6 0 1.5 1.1 3 1.3 3.2.2.2 2.2 3.4 5.3 4.7 2 .8 2.7.9 3.7.8.6-.1 1.6-.7 1.9-1.3.2-.6.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4z"/></svg>
+  </a>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
