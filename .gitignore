@@ -145,3 +145,5 @@ project/subtitles/subs.ffconcat
 project/node_modules/
 
 project/graphics/frames_map_*/
+
+project/graphics/frames_list_*/

@@ -1,0 +1,7 @@
+{
+  "_note": "Editable. Each item appears when its word is found in the subtitle cues (time is approximate, taken from the SRT). Names are only from the user-provided transcript.",
+  "lists": [
+    {"id": "plan",    "search_from": 4.0,  "items": ["আলীকদম", "থানচি", "লামা"]},
+    {"id": "visited", "search_from": 24.0, "items": ["থানচি", "নাফাখুম", "দেবতাখুম", "নীলগিরি"]}
+  ]
+}
