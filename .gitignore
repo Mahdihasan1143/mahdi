@@ -127,3 +127,13 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Video project: keep sources & renders local (large); scripts/graphics/reports stay tracked
+project/input/*
+project/renders/*
+project/final/*
+project/audio/*.wav
+project/extracted_frames/
+project/graphics/frames_*/
+project/analysis/qc_frames/
+!project/**/.gitkeep

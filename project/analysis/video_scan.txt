@@ -1,0 +1,86 @@
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'input/IMG_0611.mp4':
+  Metadata:
+    major_brand     : qt  
+    minor_version   : 0
+    compatible_brands: qt  
+    creation_time   : 2026-11-15T08:02:38.000000Z
+    com.apple.quicktime.location.accuracy.horizontal: 16.221854
+    com.apple.quicktime.full-frame-rate-playback-intent: 0
+    com.apple.quicktime.location.ISO6709: +23.8259+090.3685+022.751/
+    com.apple.quicktime.make: Apple
+    com.apple.quicktime.model: iPhone 14 Pro Max
+    com.apple.quicktime.software: 27.2
+    com.apple.quicktime.creationdate: 2026-11-15T14:02:38+0600
+  Duration: 00:02:50.03, start: 0.000000, bitrate: 13529 kb/s
+  Stream #0:0[0x1](und): Video: hevc (Main 10) (hvc1 / 0x31637668), yuv420p10le(tv, bt2020nc/bt2020/arib-std-b67), 1920x1080, 13120 kb/s, 59.92 fps, 59.94 tbr, 600 tbn (default)
+    Metadata:
+      creation_time   : 2026-11-15T08:02:38.000000Z
+      handler_name    : Core Media Video
+      vendor_id       : [0][0][0][0]
+      encoder         : HEVC
+    Side data:
+      DOVI configuration record: version: 1.0, profile: 8, level: 5, rpu flag: 1, el flag: 0, bl flag: 1, compatibility id: 4
+      displaymatrix: rotation of -90.00 degrees
+  Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 197 kb/s (default)
+    Metadata:
+      creation_time   : 2026-11-15T08:02:38.000000Z
+      handler_name    : Core Media Audio
+      vendor_id       : [0][0][0][0]
+  Stream #0:2[0x3](und): Data: none (mebx / 0x7862656D) (default)
+    Metadata:
+      creation_time   : 2026-11-15T08:02:38.000000Z
+      handler_name    : Core Media Metadata
+  Stream #0:3[0x4](und): Data: none (mebx / 0x7862656D), 50 kb/s (default)
+    Metadata:
+      creation_time   : 2026-11-15T08:02:38.000000Z
+      handler_name    : Core Media Metadata
+  Stream #0:4[0x5](und): Data: none (mebx / 0x7862656D), 121 kb/s (default)
+    Metadata:
+      creation_time   : 2026-11-15T08:02:38.000000Z
+      handler_name    : Core Media Metadata
+  Stream #0:5[0x6](und): Data: none (mebx / 0x7862656D), 5 kb/s (default)
+    Metadata:
+      creation_time   : 2026-11-15T08:02:38.000000Z
+      handler_name    : Core Media Metadata
+  Stream #0:6[0x7](und): Data: none (mebx / 0x7862656D), 0 kb/s (default)
+    Metadata:
+      creation_time   : 2026-11-15T08:02:38.000000Z
+      handler_name    : Core Media Metadata
+Stream mapping:
+  Stream #0:0 -> #0:0 (hevc (native) -> wrapped_avframe (native))
+Press [q] to stop, [?] for help
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : qt  
+    minor_version   : 0
+    compatible_brands: qt  
+    com.apple.quicktime.creationdate: 2026-11-15T14:02:38+0600
+    com.apple.quicktime.location.accuracy.horizontal: 16.221854
+    com.apple.quicktime.full-frame-rate-playback-intent: 0
+    com.apple.quicktime.location.ISO6709: +23.8259+090.3685+022.751/
+    com.apple.quicktime.make: Apple
+    com.apple.quicktime.model: iPhone 14 Pro Max
+    com.apple.quicktime.software: 27.2
+    encoder         : Lavf60.16.100
+  Stream #0:0(und): Video: wrapped_avframe, yuv420p10le(tv, bt2020nc/bt2020/arib-std-b67, progressive), 1080x1920, q=2-31, 200 kb/s, 59.94 fps, 59.94 tbn (default)
+    Metadata:
+      creation_time   : 2026-11-15T08:02:38.000000Z
+      handler_name    : Core Media Video
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc60.31.102 wrapped_avframe
+    Side data:
+      DOVI configuration record: version: 1.0, profile: 8, level: 5, rpu flag: 1, el flag: 0, bl flag: 1, compatibility id: 4
+      displaymatrix: rotation of -0.00 degrees
+[null @ 0x55eca3734a40] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 1700 >= 1700
+[null @ 0x55eca3734a40] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 1800 >= 1800
+[null @ 0x55eca3734a40] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 1900 >= 1900
+[null @ 0x55eca3734a40] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 2000 >= 2000
+[null @ 0x55eca3734a40] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 5400 >= 5400
+[null @ 0x55eca3734a40] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 5500 >= 5500
+[null @ 0x55eca3734a40] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 5600 >= 5600
+[null @ 0x55eca3734a40] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 9000 >= 9000
+[null @ 0x55eca3734a40] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 9100 >= 9100
+[null @ 0x55eca3734a40] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 9200 >= 9200
+[null @ 0x55eca3734a40] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 9300 >= 9300
+[out#0/null @ 0x55eca3737400] video:4776kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown
+frame=10189 fps= 78 q=-0.0 Lsize=N/A time=00:02:50.01 bitrate=N/A speed=1.31x    
