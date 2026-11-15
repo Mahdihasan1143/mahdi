@@ -2,8 +2,9 @@
 @font-face{font-family:'NSB';src:url('../assets/fonts/NotoSansBengali.ttf');font-weight:700}
 html,body{margin:0;width:1080px;height:300px;background:transparent;overflow:hidden}
 #w{position:absolute;left:0;right:0;bottom:0;padding:0 90px 8px;box-sizing:border-box;text-align:center;text-wrap:balance}
-#t{text-wrap:balance;font-family:'NSB',sans-serif;font-weight:700;font-size:56px;line-height:1.45;color:#fff;
-  paint-order:stroke fill;-webkit-text-stroke:7px rgba(10,10,10,.92);text-shadow:0 3px 14px rgba(0,0,0,.55)}
+#t{text-wrap:balance;font-family:'NSB',sans-serif;font-weight:700;font-size:62px;line-height:1.45;color:#fff;
+  paint-order:stroke fill;-webkit-text-stroke:9px rgba(10,10,10,.92);text-shadow:0 3px 14px rgba(0,0,0,.55)}
+#t .hl{color:#FFD23F}
 </style></head><body><div id="w"><div id="t"></div></div>
-<script>window.setText=async s=>{await document.fonts.ready;document.getElementById('t').textContent=s;await document.fonts.ready}</script>
+<script>window.setText=async s=>{await document.fonts.ready;document.getElementById('t').innerHTML=s;await document.fonts.ready}</script>
 </body></html>

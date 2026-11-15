@@ -5,6 +5,9 @@ const root=path.resolve(__dirname,'..');const END=Number(process.env.SUB_END||16
 const cues=fs.readFileSync(root+'/subtitles/subtitles_bn.srt','utf8').trim().split(/\n\s*\n/).map(b=>{
   const l=b.split('\n');const m=l[1].match(/(\d+):(\d+):(\d+),(\d+) --> (\d+):(\d+):(\d+),(\d+)/).slice(1).map(Number);
   return {a:m[0]*3600+m[1]*60+m[2]+m[3]/1000,b:m[4]*3600+m[5]*60+m[6]+m[7]/1000,t:l.slice(2).join(' ')}});
+const names=[...new Set(JSON.parse(fs.readFileSync(root+'/graphics/lists.json','utf8')).lists.flatMap(l=>l.items).concat(['বান্দরবান']))];
+const esc=t=>t.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const hl=t=>{let o=esc(t);for(const n of names)o=o.split(n).join('<span class="hl">'+n+'</span>');return o;};
 (async()=>{
   const dir=root+'/subtitles/png';fs.rmSync(dir,{recursive:true,force:true});fs.mkdirSync(dir,{recursive:true});
   const br=await chromium.launch();const p=await br.newPage({viewport:{width:1080,height:300}});
@@ -15,7 +18,7 @@ const cues=fs.readFileSync(root+'/subtitles/subtitles_bn.srt','utf8').trim().spl
     const c=cues[i];const a=Math.max(c.a,t),b=Math.min(c.b,END);if(b<=a)continue;
     if(a>t+0.001)lines.push(`file 'png/blank.png'`,`duration ${(a-t).toFixed(3)}`);
     const f=`cue_${String(i+1).padStart(3,'0')}.png`;
-    await p.evaluate(s=>window.setText(s),c.t);await p.screenshot({path:`${dir}/${f}`,omitBackground:true});
+    await p.evaluate(s=>window.setText(s),hl(c.t));await p.screenshot({path:`${dir}/${f}`,omitBackground:true});
     lines.push(`file 'png/${f}'`,`duration ${(b-a).toFixed(3)}`);t=b;
   }
   lines.push(`file 'png/blank.png'`,`duration 5`,`file 'png/blank.png'`);

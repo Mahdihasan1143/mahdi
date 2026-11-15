@@ -147,3 +147,13 @@ project/node_modules/
 project/graphics/frames_map_*/
 
 project/graphics/frames_list_*/
+
+project/mezz/
+
+project/blocks/
+
+project/audio/*.wav
+project/analysis/sec/
+project/analysis/grade2/
+project/analysis/*.npy
+project/analysis/sec_sheet_*.jpg
