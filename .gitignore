@@ -137,3 +137,7 @@ project/extracted_frames/
 project/graphics/frames_*/
 project/analysis/qc_frames/
 !project/**/.gitkeep
+
+project/analysis/sub_test/
+project/subtitles/png/
+project/subtitles/subs.ffconcat
