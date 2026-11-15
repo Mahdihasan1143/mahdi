@@ -1,0 +1,52 @@
+== QC 2026-11-15T19:04:25Z :: final/street_talk_cinematic_subtitled_1080x1920.mp4
+-- container/streams
+codec_name=h264
+profile=High
+width=1080
+height=1920
+pix_fmt=yuv420p
+color_range=tv
+color_space=bt709
+color_transfer=bt709
+r_frame_rate=60000/1001
+codec_name=aac
+profile=LC
+sample_rate=48000
+channels=2
+r_frame_rate=0/0
+duration=170.036533
+size=301320685
+bit_rate=14176750
+-- source vs output duration
+170.033333
+170.036533
+-- A/V stream start/duration
+video,0.000000,170.036533
+audio,0.000000,170.033000
+-- decode errors
+(end)
+-- black / freeze detection (black at fade-out end is expected)
+[blackdetect @ 0x7f7a8c019300] black_start:168.502 black_end:170.02 black_duration:1.51818
+(end)
+-- loudness / true peak
+[Parsed_ebur128_0 @ 0x55adcb914c80] Summary:
+
+  Integrated loudness:
+    I:         -14.1 LUFS
+    Threshold: -24.4 LUFS
+
+  Loudness range:
+    LRA:         4.7 LU
+    Threshold: -34.4 LUFS
+    LRA low:   -17.2 LUFS
+    LRA high:  -12.5 LUFS
+
+  True peak:
+    Peak:       -1.4 dBFS
+-- clipping stats
+[Parsed_astats_0 @ 0x5644da948c80] Peak level dB: -1.511614
+[Parsed_astats_0 @ 0x5644da948c80] Peak count: 2
+[Parsed_astats_0 @ 0x5644da948c80] Abs Peak count: 1
+[Parsed_astats_0 @ 0x5644da948c80] Peak level dB: -1.453622
+[Parsed_astats_0 @ 0x5644da948c80] Peak count: 2
+[Parsed_astats_0 @ 0x5644da948c80] Abs Peak count: 1

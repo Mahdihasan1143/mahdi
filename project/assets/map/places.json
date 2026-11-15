@@ -1,0 +1,10 @@
+{
+  "_source": "Coordinates = upazila centre points from Wikipedia (en) via MediaWiki API coordinates prop, fetched 2026-11-15. They mark the upazila, not an exact village/spot.",
+  "_basemap": "Natural Earth countries 10m via npm world-atlas@2.0.2 (ISC; Natural Earth is public domain)",
+  "places": [
+    {"id": "alikadam", "bn": "আলীকদম", "lat": 21.66666667, "lon": 92.305},
+    {"id": "thanchi",  "bn": "থানচি",   "lat": 21.78666667, "lon": 92.42833333},
+    {"id": "lama",     "bn": "লামা",    "lat": 21.775,       "lon": 92.2}
+  ],
+  "region_bn": "বান্দরবান"
+}

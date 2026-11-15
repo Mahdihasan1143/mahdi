@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Technical QC of the final render -> reports/qc_report.txt
 set -uo pipefail; cd "$(dirname "$0")/.."
-F=${1:-final/street_talk_cinematic_1080x1920.mp4}; R=reports/qc_report.txt; mkdir -p reports analysis/qc_frames
+F=${1:-final/street_talk_cinematic_1080x1920.mp4}; R=reports/qc_$(basename "$F" .mp4).txt; mkdir -p reports analysis/qc_frames
 {
 echo "== QC $(date -u +%FT%TZ) :: $F"
 echo "-- container/streams"; ffprobe -v error -show_entries format=duration,size,bit_rate:stream=codec_name,profile,width,height,pix_fmt,r_frame_rate,color_space,color_transfer,color_range,sample_rate,channels -of default=nw=1 "$F"

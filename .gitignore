@@ -141,3 +141,7 @@ project/analysis/qc_frames/
 project/analysis/sub_test/
 project/subtitles/png/
 project/subtitles/subs.ffconcat
+
+project/node_modules/
+
+project/graphics/frames_map_*/
