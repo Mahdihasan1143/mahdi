@@ -4,13 +4,13 @@
 Usage: 14_blocks.py [ids...]"""
 import json, os, sys, subprocess, hashlib
 os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
-VERSION = 'v2'; plan = json.load(open('analysis/plan.json')); MEZ = 'mezz/sdr30.mp4'
+VERSION = 'v4'; plan = json.load(open('analysis/plan.json')); MEZ = 'mezz/sdr30_clean.mp4'
 PW, PH, PX, PY_TOP, PY_BOT = 1000, 640, 40, 170, 830
 clamp = lambda v, lo, hi: max(lo, min(hi, v))
 WHIP = ("gblur=sigma=46:sigmaV=0:steps=1:enable='lt(t,0.07)',gblur=sigma=22:sigmaV=0:steps=1:enable='between(t,0.07,0.13)',"
         "gblur=sigma=8:sigmaV=0:steps=1:enable='between(t,0.13,0.20)'")
 def crop_scale(idx, f0, f1, d):
-    w0, w1 = f0[2], f1[2]; sc = clamp(400.0 / ((w0 + w1) / 2), 1.05, 1.75)
+    w0, w1 = f0[2], f1[2]; sc = clamp(400.0 / ((w0 + w1) / 2), 1.05, 1.4)
     cw = int(round(PW / sc / 2) * 2); ch = int(round(cw * PH / PW / 2) * 2)
     def pos(f): return (clamp(f[0] - cw / 2, 0, 1080 - cw), clamp(f[1] - 0.42 * ch, 0, 1920 - ch))
     (xa, ya), (xb, yb) = pos(f0), pos(f1); dd = max(d, 0.04)

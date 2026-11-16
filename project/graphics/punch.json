@@ -1,0 +1,9 @@
+{
+  "_note": "Punchline pop-ups. 'text' is copied from the user-provided transcript (not invented). 'find' = word searched in subtitles_bn.srt after 'from' seconds (time is approximate). 'hl' = highlighted part.",
+  "items": [
+    {"text": "একশো বার!",              "find": "একশো বার",     "from": 15,  "hl": "একশো বার"},
+    {"text": "একই জায়গায় তিনবার!",   "find": "তিনবার!",       "from": 50,  "hl": "তিনবার"},
+    {"text": "ট্যুর ক্যানসেল করি না!", "find": "ট্যুর ক্যানসেল", "from": 76,  "hl": "ক্যানসেল"},
+    {"text": "ঝরনায় পানি নাই!",       "find": "ঝরনায় পানি",    "from": 125, "hl": "পানি নাই"}
+  ]
+}

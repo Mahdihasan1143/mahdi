@@ -1,10 +1,10 @@
 {
-  "_note": "PLACEHOLDER text chosen by the editor - change and re-run scripts/02_graphics.sh. No names/facts were invented.",
-  "title": "STREET TALK",
-  "title_sub": "A CONVERSATION",
-  "outro": "THANKS FOR WATCHING",
-  "accent": "#F2A33A",
-  "intro_seconds": 4.0,
-  "outro_seconds": 4.0,
-  "fps": 30
+ "_note": "Channel name 'FATAH' was taken from the user's message (assumed). Edit and re-run scripts/02_graphics.sh + 16_final.py.",
+ "title": "FATAH",
+ "title_sub": "",
+ "outro": "FATAH",
+ "accent": "#F2A33A",
+ "intro_seconds": 4.0,
+ "outro_seconds": 4.0,
+ "fps": 30
 }

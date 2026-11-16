@@ -7,6 +7,7 @@ CHAIN = "highpass=f=80,afftdn=nr=9:nf=-38,equalizer=f=250:t=q:w=1.2:g=-1.5,equal
 whoosh = [round(max(0, t - 0.9), 3) for t in json.load(open('analysis/sfx_times.json'))]   # block starts + panel swaps (swish)
 hits = []
 outro_t = DUR - cfg['outro_seconds']
+pops = [q['start'] + 0.05 for q in json.load(open('graphics/punch_timing.json'))] if os.path.exists('graphics/punch_timing.json') else []
 ms = lambda t: int(t * 1000)
 parts = [f"[0:a:0]{CHAIN}[d]"]; mix = ['[d]']
 def fan(idx, n, name, chain, times):
@@ -16,11 +17,12 @@ def fan(idx, n, name, chain, times):
         parts.append(f"[{name}{i}]{chain},adelay={ms(t)}|{ms(t)}[{name}o{i}]"); mix.append(f"[{name}o{i}]")
 fan(1, 0, 'w', 'volume=0.24', whoosh)
 fan(2, 0, 'h', 'atrim=0:0.75,afade=t=out:st=0.35:d=0.4,volume=0.20', hits)
+fan(4, 0, 'p', 'volume=0.35', pops)
 parts.append(f"[2:a]volume=0.35,adelay=300|300[i0]"); mix.append('[i0]')
 parts.append(f"[3:a]volume=0.12,adelay={ms(outro_t)}|{ms(outro_t)}[o0]"); mix.append('[o0]')
 parts.append(f"{''.join(mix)}amix=inputs={len(mix)}:normalize=0:duration=first:dropout_transition=0[m]")
 sh = lambda c: subprocess.run(c, capture_output=True, text=True)
-r = sh(['ffmpeg','-hide_banner','-v','error','-y','-i','input/IMG_0611.mp4','-i','audio/sfx_whoosh.wav','-i','audio/sfx_impact.wav','-i','audio/sfx_outro_drone.wav',
+r = sh(['ffmpeg','-hide_banner','-v','error','-y','-i','input/IMG_0611.mp4','-i','audio/sfx_whoosh.wav','-i','audio/sfx_impact.wav','-i','audio/sfx_outro_drone.wav','-i','audio/sfx_pop.wav',
         '-filter_complex', ';'.join(parts), '-map', '[m]', '-t', str(DUR), '-ar', '48000', '-c:a', 'pcm_s24le', 'audio/premaster_v2.wav'])
 if r.returncode: raise SystemExit(r.stderr[-1500:])
 m = sh(['ffmpeg','-hide_banner','-nostats','-i','audio/premaster_v2.wav','-af','loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json','-f','null','-']).stderr

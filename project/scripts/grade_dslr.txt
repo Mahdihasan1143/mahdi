@@ -1,0 +1,1 @@
+curves=master='0/0.015 0.25/0.235 0.5/0.505 0.8/0.815 1/0.985',selectivecolor=yellows=0 0 -0.22 0:reds=0 0 0.03 0,colorbalance=rm=0.012:bm=-0.012:bh=0.02:rh=0.01,vibrance=intensity=0.18,eq=saturation=1.04:contrast=1.03
