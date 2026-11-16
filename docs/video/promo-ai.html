@@ -34,7 +34,9 @@ function add(html,cls,style,anim){const d=document.createElement('div');d.classN
 function win(t0,t1,f=.4){return t=>clamp((t-t0)/f)*clamp((t1-t)/f)}
 const logo='<span style="display:inline-grid;place-items:center;width:1em;height:1em;border-radius:.28em;background:#6D4AFF;vertical-align:-.1em;margin-right:.18em"><svg width=".6em" height=".6em" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01"/></svg></span>';
 // S1 hook 0-3.3
-add('Replying to every<br><span class="hl">customer?</span>','txt','top:470px',t=>({o:win(0,3.3,.35)(t),y:mix(60,0,ease(t/.6)),s:mix(.9,1,ease(t/.6))}));
+(function(){const words=['Replying','to','every','<span class="hl">customer?</span>'];
+ const el=add(words.map((w,i)=>'<span class="w" style="display:inline-block;margin:0 .14em">'+w+'</span>'+(i==2?'<br>':'')).join(''),'txt','top:460px',t=>({o:clamp((3.3-t)/.35)}));
+ extras.push(t=>{el.querySelectorAll('.w').forEach((w,i)=>{const k=ease((t-.15-i*.22)/.55);w.style.opacity=k;w.style.transform='translateY('+mix(40,0,k)+'px) scale('+mix(.92,1,k)+')';w.style.filter='blur('+mix(14,0,k)+'px)'})});})();
 // S2 chat 3.2-6.6
 [['c','CUSTOMER','Assalamu alaikum, 1HP solar pump er chobi dekhaben?',70,250],['c','CUSTOMER','Price koto? Warranty ache?',380,450],['c','CUSTOMER','Ekhoni order dibo, kothay pabo?',690,260],['c','CUSTOMER','Kal rate-o reply paini...',980,420]].forEach(([k,who,txt,y,x],i)=>{
  add('<small>'+who+'</small>'+txt,'msg '+k,'left:0;top:0;width:'+(i%2?470:520)+'px',t=>{const t0=3.2+i*.4;const kk=back((t-t0)/.6);
@@ -48,13 +50,21 @@ function shotScene(src,aspect,t0,t1,title,sub,top){
  add('<img src="ai-assets/'+src+'">','shot','top:'+top+'px',t=>({o:win(t0,t1,.35)(t),x:mix(500,0,ease((t-t0)/.7)),y:Math.sin(t*1.6)*10,r:mix(4,-1.5,ease((t-t0)/.8))}));
  add(sub,'txt','top:1010px;font-size:36px;font-weight:600;letter-spacing:0;color:#5b4fa8;padding:0 60px',t=>({o:win(t0+.4,t1,.35)(t)}));
 }
-shotScene('dashboard.jpg',0,9.8,13.6,'Every chat,<br>one dashboard','See customers, leads and AI replies live',520);
+(function(){const A=9.8,B=13.6;
+ add('Every chat,<br>one dashboard','txt','top:110px;font-size:70px',t=>({o:win(A,B,.35)(t),y:mix(-40,0,ease((t-A)/.5)),b:mix(10,0,ease((t-A)/.5))}));
+ add('','abs','left:60px;top:450px;width:600px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(109,74,255,.55),rgba(109,74,255,0) 70%);filter:blur(30px)',t=>({o:win(A,B,.4)(t)*.9,s:mix(.9,1.15,clamp((t-A)/3.8))}));
+ add('<img src="ai-assets/dashboard.jpg" style="display:block;width:100%">','shot','left:-20px;width:780px;top:480px;border-radius:30px',t=>{const k=clamp((t-A)/(B-A));const e=ease((t-A)/.8);
+  return {o:win(A,B,.35)(t),x:mix(300,0,e)-k*25,y:mix(80,0,e)+Math.sin(t*1.5)*6,rx:mix(22,5,e),ry:mix(-30,-9,e)+k*4,s:mix(.92,1.06,k)}});
+ [['Total Customers','#3b82f6',830],['Active Leads','#6366f1',915],['AI Response Rate','#10b981',1000]].forEach(([n,c,y],i)=>{
+  add('<i style="display:inline-block;width:16px;height:16px;border-radius:50%;background:'+c+';margin-right:14px;box-shadow:0 0 0 6px '+c+'33"></i>'+n,'chip','left:0;top:0;font-size:32px',t=>{const t0=A+.9+i*.45;return {o:clamp((t-t0)/.2)*clamp((B-t)/.35),x:mix(-420,150+i*50,back((t-t0)/.6)),y:y+Math.sin(t*2+i)*5}})});
+})();
 // ---- Pipeline drag scene 13.4-20.0
 (function(){
  const P0=13.4,P1=20.0,T0=14.6,HOP=1.0,N=6,CW=210,GAP=14,PADL=16,BTOP=96;
  const names=['New','Contacted','Qualified','Proposal','Negotiation','Won ✓'];
  const dots=['#3b82f6','#6366f1','#8b5cf6','#a855f7','#f97316','#10b981'];
  add('Turn chats<br>into sales','txt','top:120px;font-size:68px',t=>({o:win(P0,P1,.35)(t),y:mix(-40,0,ease((t-P0)/.5))}));
+ add('','abs','left:60px;top:470px;width:600px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(109,74,255,.45),rgba(109,74,255,0) 70%);filter:blur(30px)',t=>({o:win(P0,P1,.4)(t)*.9}));
  const board=add('','shot','top:470px;height:470px;background:#f4f3fb',t=>({o:win(P0,P1,.35)(t),x:mix(500,0,ease((t-P0)/.7)),y:Math.sin(t*1.6)*6}));
  board.innerHTML='<div style="padding:22px 26px 0"><div style="font-weight:800;font-size:34px;color:#111">Sales Pipeline</div><div style="font-size:20px;color:#6b7280;margin-top:2px">1 deal</div></div><div id="track" style="position:absolute;left:0;top:'+BTOP+'px;height:360px;width:'+(PADL*2+N*(CW+GAP))+'px"></div><div id="dealcard" style="position:absolute;left:0;top:0;width:'+(CW-28)+'px;background:#fff;border-radius:16px;padding:16px;box-shadow:0 8px 20px rgba(60,30,160,.18);border:2px solid #fff;z-index:5"><div style="font-weight:700;font-size:21px;color:#111;line-height:1.2">New inquiry from Demo Customer</div><div style="display:flex;align-items:center;gap:10px;margin-top:12px"><span style="width:30px;height:30px;border-radius:50%;background:#14b8a6;color:#fff;font-weight:700;font-size:16px;display:grid;place-items:center">D</span><span style="font-size:18px;color:#374151">Demo Customer</span></div><div style="display:flex;justify-content:space-between;margin-top:12px;font-size:17px;color:#6366f1;font-weight:700"><span>Tk 0</span><span style="color:#9ca3af;font-weight:500">1 follow-up</span></div></div>';
  const track=board.querySelector('#track'),card=board.querySelector('#dealcard');
@@ -104,7 +114,7 @@ shotScene('dashboard.jpg',0,9.8,13.6,'Every chat,<br>one dashboard','See custome
 
 // S5 feature chips 19.8-20.2
 const feats=['Live Chat','Leads','Follow-ups','Knowledge Base','Train AI','Analytics','Team Members'];
-add('Everything<br>in one place','txt','top:110px;font-size:76px',t=>({o:win(19.8,23.3,.35)(t),y:mix(-40,0,ease((t-19.8)/.5))}));
+add('Everything<br>in one place','txt','top:110px;font-size:76px',t=>({o:win(20.05,23.3,.35)(t),y:mix(-40,0,ease((t-20.05)/.5))}));
 feats.forEach((f,i)=>{const y=400+i*115,x=[90,300,150,260,110,330,200][i];
  add(f,'chip','left:0;top:0',t=>{const t0=20+i*.2;return {o:win(t0,23.3,.3)(t),x:mix(i%2?800:-500,x,back((t-t0)/.55)),y:y+Math.sin(t*2+i)*8}})});
 // S6 CTA 20-24
@@ -133,7 +143,8 @@ window.render=function(t){
  b2.style.transform='translate('+(300+Math.cos(t*.6)*80)+'px,'+(780+Math.sin(t*.8)*90)+'px)';
  els.forEach(({d,anim})=>{if(!anim)return;const a=anim(t);const o=a.o===undefined?1:a.o;
   d.style.opacity=o;d.style.visibility=o<=0.001?'hidden':'visible';
-  d.style.transform='translate('+(a.x||0)+'px,'+(a.y||0)+'px) scale('+(a.s===undefined?1:a.s)+') rotate('+(a.r||0)+'deg)'});
+  d.style.transform='perspective(1400px) translate('+(a.x||0)+'px,'+(a.y||0)+'px) rotateX('+(a.rx||0)+'deg) rotateY('+(a.ry||0)+'deg) scale('+(a.s===undefined?1:a.s)+') rotate('+(a.r||0)+'deg)';
+  if(a.b!==undefined)d.style.filter=a.b>0.05?'blur('+a.b+'px)':'none'});
  extras.forEach(f=>f(t));
 };
 render(0);
