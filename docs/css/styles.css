@@ -459,3 +459,7 @@ img{max-width:100%}
   .panel-array{display:none}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+/* promo video */
+.promo-wrap{max-width:360px;margin:0 auto;border-radius:24px;overflow:hidden;box-shadow:var(--shadow-lg);background:#0B3D91}
+.promo-wrap video{display:block;width:100%;height:auto;aspect-ratio:9/16}

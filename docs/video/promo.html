@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><title>Ifada Solar Promo</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:720px;height:1280px;overflow:hidden;background:#fff;font-family:'Inter',sans-serif}
+#stage{position:relative;width:720px;height:1280px;overflow:hidden}
+.bg{position:absolute;inset:0}
+.abs{position:absolute;left:0;top:0;will-change:transform,opacity}
+.txt{position:absolute;left:0;width:720px;text-align:center;font-weight:800;font-size:84px;line-height:1.05;letter-spacing:-2px;color:#0B3D91}
+.hl{display:inline-block;background:#FFC107;color:#0B3D91;padding:0 18px;border-radius:14px}
+.card{position:absolute;width:420px;background:#fff;border-radius:28px;box-shadow:0 30px 70px rgba(11,61,145,.25);padding:28px;display:flex;align-items:center;gap:22px}
+.card .ic{width:96px;height:96px;border-radius:24px;display:grid;place-items:center;background:#EAF1FF;flex:none}
+.card b{display:block;font-size:34px;color:#0B3D91;letter-spacing:-.5px;line-height:1.1}
+.card small{font-size:22px;color:#5b6472}
+.bill{position:absolute;width:480px;background:#fff;border-radius:26px;padding:22px 28px;box-shadow:0 24px 60px rgba(0,0,0,.35);font-size:28px;color:#1F2937;font-weight:600}
+.bill i{font-style:normal;color:#e53935;font-weight:800}
+.pill{display:inline-block;background:#0B3D91;color:#fff;font-weight:700;font-size:38px;padding:26px 64px;border-radius:70px}
+</style></head><body>
+<div id="stage">
+ <div class="bg" id="bg"></div>
+ <div id="sun" class="abs" style="width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,#FFE082 0%,#FFC107 45%,rgba(255,193,7,0) 70%)"></div>
+ <div id="layer"></div>
+</div>
+<script>
+const W=720,H=1280,DUR=24;
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);
+const back=x=>{x=clamp(x);const c=1.70158;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const mix=(a,b,k)=>a+(b-a)*k;
+const layer=document.getElementById('layer'),bg=document.getElementById('bg'),sun=document.getElementById('sun');
+const els=[];
+function add(html,cls,style,anim){const d=document.createElement('div');d.className=cls;d.style.cssText=style||'';d.innerHTML=html;layer.appendChild(d);els.push({d,anim});return d}
+// anim(t) -> {x,y,s,r,o} ; visible only when o>0
+function win(t0,t1,f=.5){return t=>clamp((t-t0)/f)*clamp((t1-t)/f)} // fade window
+const svg={
+ panel:'<svg width="64" height="64" viewBox="0 0 64 64"><g fill="#0B3D91"><path d="M10 14h44l6 32H4z"/></g><g stroke="#EAF1FF" stroke-width="2.5"><path d="M18 14l-3 32M32 14v32M46 14l3 32M7 30h50"/></g><path d="M24 50h16v6H24z" fill="#FFC107"/></svg>',
+ light:'<svg width="64" height="64" viewBox="0 0 64 64"><rect x="29" y="14" width="6" height="44" fill="#0B3D91"/><path d="M12 16h40l-6 12H18z" fill="#0B3D91"/><circle cx="32" cy="34" r="5" fill="#FFC107"/><path d="M20 4l6 6M44 4l-6 6M32 0v7" stroke="#FFC107" stroke-width="3" stroke-linecap="round"/></svg>',
+ pump:'<svg width="64" height="64" viewBox="0 0 64 64"><path d="M32 6c10 14 16 22 16 30a16 16 0 01-32 0c0-8 6-16 16-30z" fill="#1E88E5"/><path d="M24 38a8 8 0 008 8" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/></svg>',
+ inv:'<svg width="64" height="64" viewBox="0 0 64 64"><rect x="8" y="12" width="48" height="40" rx="8" fill="#0B3D91"/><path d="M34 18l-10 16h8l-4 14 14-18h-9z" fill="#FFC107"/></svg>'
+};
+// ---- Scene 1 (0-3.4): hook
+add('Still paying<br>huge <span class="hl">bills?</span>','txt','top:470px',t=>({o:win(0.0,3.3,.35)(t),y:mix(60,0,ease(t/.6)),s:mix(.9,1,ease(t/.6))}));
+// ---- Scene 2 (3.2-6.6): bills + load-shedding
+[['Electricity bill','<i>Tk 18,450</i>',140,0],['Load-shedding','<i>again tonight</i>',420,.25],['Diesel generator','<i>Tk 9,800</i>',700,.5],['Meter reading','<i>up 32%</i>',980,.75]].forEach(([a,b,y,d],i)=>{
+ add(a+' &nbsp;'+b,'bill','left:120px;top:0',t=>{const tt=t-3.2-d*0.5;const side=i%2?1:-1;
+  const o=win(3.2+d*.5,6.4,.35)(t);const k=ease(tt/.7);
+  return {o:o,x:mix(side*900,0,k)+Math.sin(t*1.6+i)*14,y:y+Math.cos(t*1.3+i)*18,r:(i%2?4:-4)+Math.sin(t+i)*2}})});
+// ---- Scene 3 (6.4-10): brand reveal
+add('<div style="font-size:30px;font-weight:700;letter-spacing:6px;color:#FFC107;margin-bottom:18px">GO SOLAR WITH</div>Ifada<br><span style="color:#FFC107">Solar</span>','txt','top:440px;color:#fff;font-size:130px',t=>({o:win(6.4,10.2,.4)(t),y:mix(80,0,ease((t-6.4)/.7)),s:mix(.85,1,back((t-6.4)/.8))}));
+add('Powering Bangladesh with the Sun since 2006','txt','top:850px;font-size:36px;font-weight:600;letter-spacing:0;color:#dbe7ff;padding:0 70px',t=>({o:win(7.2,10.2,.4)(t),y:mix(30,0,ease((t-7.2)/.6))}));
+// ---- Scene 4 (10-16.4): products
+const prods=[['panel','Solar Panels','Mono 250W – 550W'],['light','Street Lights','All-in-one, auto on/off'],['pump','Water Pumps','Surface & submersible'],['inv','Inverters','Hybrid & on-grid']];
+prods.forEach(([ic,a,b],i)=>{
+ add('<div class="ic">'+svg[ic]+'</div><div><b>'+a+'</b><small>'+b+'</small></div>','card','left:150px;top:0',t=>{
+  const t0=10.1+i*.55;const k=back((t-t0)/.7);const o=clamp((t-t0)/.2)*clamp((16.2-t)/.4);
+  return {o:o,x:mix(i%2?600:-600,i%2?40:-10,k)+ (i%2?40:-10)*0,y:260+i*230+Math.sin(t*1.8+i*1.7)*14,s:1.12,r:(i%2?2.5:-2.5)}});
+});
+add('Everything you need','txt','top:70px;font-size:62px;color:#fff',t=>({o:win(10,16.3,.4)(t),y:mix(-40,0,ease((t-10)/.5))}));
+add('Panels · Pumps · Lights · Batteries','txt','top:1170px;font-size:32px;font-weight:600;letter-spacing:0;color:#cfe0ff',t=>({o:win(11.5,16.3,.4)(t)}));
+// ---- Scene 5 (16.2-20.2): stats
+[['20+','Years of experience'],['8','Product categories'],['Free','Site survey & quote']].forEach(([n,l],i)=>{
+ add('<div style="font-size:150px;font-weight:800;color:#0B3D91;letter-spacing:-5px;line-height:1">'+n+'</div><div style="font-size:36px;font-weight:600;color:#5b6472;margin-top:8px">'+l+'</div>','txt','top:'+(150+i*340)+'px;font-size:40px',t=>{
+  const t0=16.3+i*.5;return {o:win(t0,20.2,.35)(t),y:mix(70,0,ease((t-t0)/.6)),s:mix(.8,1,back((t-t0)/.7))}});
+});
+// ---- Scene 6 (20-24): CTA
+add('<div style="font-size:78px;font-weight:800;color:#fff;letter-spacing:-2px">Ifada<span style="color:#FFC107">Solar</span></div>','txt','top:300px',t=>({o:clamp((t-20.2)/.4),y:mix(50,0,ease((t-20.2)/.6))}));
+add('Get your<br><span class="hl">free quote</span>','txt','top:430px;color:#fff;font-size:96px',t=>({o:clamp((t-20.5)/.4),s:mix(.85,1,back((t-20.5)/.7))}));
+add('<div class="pill" style="background:#FFC107;color:#0B3D91">Call 01963 920520</div>','txt','top:820px',t=>({o:clamp((t-21.1)/.4),y:mix(40,0,ease((t-21.1)/.5)),s:1+Math.sin(t*5)*.025}));
+add('Mirpur-12, Dhaka · ifadaelectronicsltd@gmail.com','txt','top:1020px;font-size:26px;font-weight:600;letter-spacing:0;color:#cfe0ff',t=>({o:clamp((t-21.6)/.4)}));
+
+// ---- backgrounds / sun
+const C={light:['#ffffff','#eaf1ff'],dark:['#0B3D91','#06245a'],sky:['#124bb0','#0B3D91']};
+function bgAt(t){
+ // 0-3.3 light, 3.3-6.5 dark, 6.5-10.3 blue sunrise, 10.3-16.3 blue, 16.3-20.3 light, 20.3+ blue
+ let a,b;
+ if(t<3.2)return C.light;
+ if(t<3.5){return [lerpc(C.light[0],C.dark[0],(t-3.2)/.3),lerpc(C.light[1],C.dark[1],(t-3.2)/.3)]}
+ if(t<6.3)return C.dark;
+ if(t<6.7)return [lerpc(C.dark[0],C.sky[0],(t-6.3)/.4),lerpc(C.dark[1],C.sky[1],(t-6.3)/.4)];
+ if(t<16.1)return C.sky;
+ if(t<16.5)return [lerpc(C.sky[0],C.light[0],(t-16.1)/.4),lerpc(C.sky[1],C.light[1],(t-16.1)/.4)];
+ if(t<20.1)return C.light;
+ if(t<20.5)return [lerpc(C.light[0],C.sky[0],(t-20.1)/.4),lerpc(C.light[1],C.sky[1],(t-20.1)/.4)];
+ return C.sky}
+function hex(h){return [1,3,5].map(i=>parseInt(h.substr(i,2),16))}
+function lerpc(a,b,k){const A=hex(a),B=hex(b);return '#'+A.map((v,i)=>Math.round(mix(v,B[i],clamp(k))).toString(16).padStart(2,'0')).join('')}
+window.render=function(t){
+ const c=bgAt(t);bg.style.background='linear-gradient(180deg,'+c[0]+','+c[1]+')';
+ // sun: rises 6.4-9, then glows in corner; big at CTA
+ let sx,sy,so;
+ if(t<6.4){sx=360;sy=1500;so=0}
+ else if(t<10.3){const k=ease((t-6.4)/2.4);sx=360;sy=mix(1500,90,k);so=1}
+ else if(t<20.3){sx=mix(360,600,ease((t-10.3)/1));sy=mix(90,60,ease((t-10.3)/1));so=t<16.3?.9:0}
+ else {sx=360;sy=mix(1500,-10,ease((t-20.3)/1.2));so=1}
+ sun.style.opacity=so;sun.style.transform='translate('+(sx-260)+'px,'+(sy-260)+'px) scale('+(1+Math.sin(t*2)*.03)+')';
+ els.forEach(({d,anim})=>{const a=anim(t);const o=a.o===undefined?1:a.o;
+  d.style.opacity=o;d.style.visibility=o<=0.001?'hidden':'visible';
+  d.style.transform='translate('+(a.x||0)+'px,'+(a.y||0)+'px) scale('+(a.s===undefined?1:a.s)+') rotate('+(a.r||0)+'deg)'});
+};
+render(0);
+</script></body></html>
