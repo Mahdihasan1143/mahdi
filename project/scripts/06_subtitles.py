@@ -16,6 +16,18 @@ def chunks(text):
         else: cur = (cur + ' ' + w).strip()
     if cur: out.append(cur)
     return out
+import subprocess, numpy as np
+def speech_clock():
+    raw = subprocess.run(['ffmpeg','-v','error','-i','input/IMG_0611.mp4','-vn','-ac','1','-ar','16000','-f','s16le','-'],capture_output=True).stdout
+    x = np.frombuffer(raw, np.int16).astype(np.float32) / 32768; n = len(x) // 320
+    db = 20*np.log10(np.sqrt((x[:n*320].reshape(n,320)**2).mean(1)) + 1e-6)        # 20 ms frames
+    thr = np.percentile(db, 20) + 9; m = (db > thr).astype(np.float32)
+    m = np.convolve(m, np.ones(9)/9, 'same') > 0.4                                   # smooth ~0.18 s
+    m = np.convolve(m.astype(np.float32), np.ones(11), 'same') > 0                    # bridge short gaps
+    return np.concatenate([[0], np.cumsum(m)*0.02])
+CLK = speech_clock() if '--uniform' not in sys.argv else None
+def S(t): return float(np.interp(t, np.arange(len(CLK))*0.02, CLK))
+def Sinv(v): return float(np.interp(v, CLK, np.arange(len(CLK))*0.02))
 def build():
     cues, blk = [], None
     for ln in open('subtitles/transcript_bn.txt', encoding='utf-8'):
@@ -25,10 +37,16 @@ def build():
         if ln.strip().startswith('*'): blk[2] += chunks(ln.strip()[1:].strip())
     out = []
     for a, b, parts in cues:
-        tot = sum(len(p) for p in parts); t = a
+        tot = sum(len(p) for p in parts); done = 0; Sa, Sb = (S(a), S(b)) if CLK is not None else (0, 0)
+        speech = CLK is not None and (Sb - Sa) >= 0.35 * (b - a)                     # enough speech in the block to trust it
+        tm = (lambda f: Sinv(Sa + f * (Sb - Sa))) if speech else (lambda f: a + f * (b - a))
+        blk = []
         for p in parts:
-            d = max(MINDUR, (b - a) * len(p) / tot) if tot else 1
-            out.append([t, min(t + d, b), p]); t += (b - a) * len(p) / tot
+            f0, f1 = done / tot, (done + len(p)) / tot; blk.append([tm(f0), tm(f1), p]); done += len(p)
+        for i, q in enumerate(blk):
+            nxt = blk[i+1][0] if i + 1 < len(blk) else b
+            q[1] = max(q[0] + MINDUR, min(nxt - 0.02, q[1] + 0.3)); q[1] = min(q[1], b if i + 1 == len(blk) else q[1])
+        out += blk
     return out
 def read_srt():
     out = []

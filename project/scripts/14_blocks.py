@@ -4,7 +4,7 @@
 Usage: 14_blocks.py [ids...]"""
 import json, os, sys, subprocess, hashlib
 os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
-VERSION = 'v4'; plan = json.load(open('analysis/plan.json')); MEZ = 'mezz/sdr30_clean.mp4'
+VERSION = 'v5'; PLAN = os.environ.get('PLAN', 'analysis/plan.json'); BLK = os.environ.get('BLK', 'blocks'); os.makedirs(BLK, exist_ok=True); plan = json.load(open(PLAN)); MEZ = 'mezz/sdr30_clean.mp4'
 PW, PH, PX, PY_TOP, PY_BOT = 1000, 640, 40, 170, 830
 clamp = lambda v, lo, hi: max(lo, min(hi, v))
 WHIP = ("gblur=sigma=46:sigmaV=0:steps=1:enable='lt(t,0.07)',gblur=sigma=22:sigmaV=0:steps=1:enable='between(t,0.07,0.13)',"
@@ -21,7 +21,7 @@ def build(b):
     if b['kind'] == 'full':
         z0, z1 = b['z0'], b['z1']; zz = f"({z0}+({z1}-{z0})*t/{d:.4f})"
         fc = (f"[0:v]scale=w='trunc(1080*{zz}/2)*2':h='trunc(1920*{zz}/2)*2':eval=frame:flags=lanczos,"
-              f"crop=1080:1920:x='min(max({b['cx']:.1f}*(iw/1080-1),0),iw-1080)':y='min(max({b['cy']:.1f}*(ih/1920-1),0),ih-1920)',{WHIP},format=yuv420p[out]")
+              f"crop=1080:1920:x='min(max({b['cx']:.1f}*(iw/1080-1),0),iw-1080)':y='min(max({b['cy']:.1f}*(ih/1920-1),0),ih-1920)',{WHIP if b.get('fx','whip') == 'whip' else 'null'},format=yuv420p[out]")
         return ['-ss', f"{b['t0']:.4f}", '-t', f'{d:.4f}', '-i', MEZ], fc, N
     ins, parts, idx = [], [], 0
     def panel(pieces, tag, mask):
@@ -51,7 +51,7 @@ def build(b):
     parts += [f"[bg][Tf]overlay=x='{xt}':y={PY_TOP}:format=auto[s1]", f"[s1][Bf]overlay=x='{xb}':y={PY_BOT}:format=auto,{WHIP},format=yuv420p[out]"]
     return ins, ';'.join(parts), N
 def render(b):
-    out = f"blocks/block_{b['id']:03d}.mp4"; key = hashlib.md5((VERSION + json.dumps(b, sort_keys=True)).encode()).hexdigest()[:10]; stamp = out + '.key'
+    out = f"{BLK}/block_{b['id']:03d}.mp4"; key = hashlib.md5((VERSION + json.dumps(b, sort_keys=True)).encode()).hexdigest()[:10]; stamp = out + '.key'
     if os.path.exists(out) and os.path.exists(stamp) and open(stamp).read() == key: return out
     ins, fc, N = build(b)
     cmd = ['ffmpeg', '-hide_banner', '-v', 'error', '-y'] + ins + ['-filter_complex', fc, '-map', '[out]', '-frames:v', str(N), '-r', '30',
