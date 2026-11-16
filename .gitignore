@@ -159,3 +159,5 @@ project/analysis/*.npy
 project/analysis/sec_sheet_*.jpg
 
 project/analysis/looks/
+
+project/analysis/v3/
