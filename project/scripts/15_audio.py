@@ -4,8 +4,8 @@ import json, os, subprocess, re
 os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 plan = json.load(open('analysis/plan.json')); DUR = 170.033; cfg = json.load(open('graphics/config.json'))
 CHAIN = "highpass=f=80,afftdn=nr=9:nf=-38,equalizer=f=250:t=q:w=1.2:g=-1.5,equalizer=f=3200:t=q:w=1:g=1.8,acompressor=threshold=-21dB:ratio=2.5:attack=15:release=220:makeup=2"
-whoosh = [round(max(0, b['t0'] - 0.9), 3) for b in plan if b['fx'] == 'whip' and b['t0'] > 0.5]
-hits = [round(b['t0'] - 0.02, 3) for b in plan if b['fx'] == 'flash']
+whoosh = [round(max(0, t - 0.9), 3) for t in json.load(open('analysis/sfx_times.json'))]   # block starts + panel swaps (swish)
+hits = []
 outro_t = DUR - cfg['outro_seconds']
 ms = lambda t: int(t * 1000)
 parts = [f"[0:a:0]{CHAIN}[d]"]; mix = ['[d]']
@@ -14,7 +14,7 @@ def fan(idx, n, name, chain, times):
     parts.append(f"[{idx}:a]asplit={len(times)}" + ''.join(f"[{name}{i}]" for i in range(len(times))))
     for i, t in enumerate(times):
         parts.append(f"[{name}{i}]{chain},adelay={ms(t)}|{ms(t)}[{name}o{i}]"); mix.append(f"[{name}o{i}]")
-fan(1, 0, 'w', 'volume=0.30', whoosh)
+fan(1, 0, 'w', 'volume=0.24', whoosh)
 fan(2, 0, 'h', 'atrim=0:0.75,afade=t=out:st=0.35:d=0.4,volume=0.20', hits)
 parts.append(f"[2:a]volume=0.35,adelay=300|300[i0]"); mix.append('[i0]')
 parts.append(f"[3:a]volume=0.12,adelay={ms(outro_t)}|{ms(outro_t)}[o0]"); mix.append('[o0]')
