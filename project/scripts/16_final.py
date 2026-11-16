@@ -13,7 +13,7 @@ ins = ['-f', 'concat', '-safe', '0', '-i', f'{BLK}/blocks.txt', '-i', f'audio/ma
 for l in lists: ins += ['-framerate', '30', '-i', f"graphics/frames_list_{l['id']}/f_%04d.png"]
 for i, q in enumerate(pops): ins += ['-framerate', '30', '-i', f"graphics/frames_pop_{i}/f_%04d.png"]
 parts = [f"[0:v]fps=30,{grade},format=yuv420p[g]",
-         ("[g]movie=assets/ui/bottom_gradient.png,format=rgba[gr];[g][gr]overlay=0:1020:format=auto[g2]" if os.environ.get("GRAD") == "1" else "[g]null[g2]"), "[g2][2:v]overlay=0:1440:eof_action=repeat:format=auto[v1]"]; cur = 'v1'
+         ("movie=assets/ui/bottom_gradient.png,format=rgba[gr];[g][gr]overlay=0:1020:format=auto[g2]" if os.environ.get("GRAD") == "1" else "[g]null[g2]"), "[g2][2:v]overlay=0:1440:eof_action=repeat:format=auto[v1]"]; cur = 'v1'
 for i, l in enumerate(lists):
     parts.append(f"[{5+i}:v]format=rgba,setpts=PTS+{l['start']}/TB[ls{i}]"); parts.append(f"[{cur}][ls{i}]overlay=30:215:eof_action=pass:format=auto[vl{i}]"); cur = f'vl{i}'
 for i, q in enumerate(pops):
