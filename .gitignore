@@ -157,3 +157,5 @@ project/analysis/sec/
 project/analysis/grade2/
 project/analysis/*.npy
 project/analysis/sec_sheet_*.jpg
+
+project/analysis/looks/
