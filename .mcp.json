@@ -2,10 +2,7 @@
   "mcpServers": {
     "fish-audio": {
       "type": "http",
-      "url": "https://api.fish.audio/mcp",
-      "headers": {
-        "Authorization": "Bearer ${FISH_API_KEY}"
-      }
+      "url": "https://api.fish.audio/mcp"
     }
   }
 }
